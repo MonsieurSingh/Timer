@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timer</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Fonts.google.com imports -->
+<link rel="preconnect" href="https://fonts.googleapis.com"> 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+<link href="https://fonts.googleapis.com/css2?family=Iceland&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Iceberg&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="timerDisp" id="timer">
+    <p class="time" id="timeI">00:00:00</p>
+    <div class="functionalButtons">
+      <div class="row">
+        <button class="key" onclick="keyPress(1)">1</button>
+        <button class="key" onclick="keyPress(2)">2</button>
+        <button class="key" onclick="keyPress(3)">3</button>
+        <button class="key" onclick="keyPress(4)">4</button>
+        <button class="key" onclick="keyPress(5)">5</button>
+      </div>
+
+      <div class="row">        
+        <button class="key" onclick="keyPress(6)">6</button>
+        <button class="key" onclick="keyPress(7)">7</button>
+        <button class="key" onclick="keyPress(8)">8</button>
+        <button class="key" onclick="keyPress(9)">9</button>
+        <button class="key" onclick="keyPress(10)">10</button>
+      </div>
+      
+      <div class="row">
+        <button class="key" onclick="reset()">Pause</button>
+    <button class="key" onclick="reset()">Reset</button>
+    <button class="key" onclick="reset()">Show</button>
+    <button class="key" onclick="reset()">Clear</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+
+</body>
+</html>
