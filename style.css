@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: #dadbd3;
+}
+body main {
+  background: #f0f1f7;
+  width: 90vw;
+  height: 90vh;
+  box-shadow: -1px 4px 20px -6px rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+}
+body main .timesUpMsg {
+  text-transform: uppercase;
+  font-size: 3em;
+  color: crimson;
+  margin-bottom: 20px;
+  display: none;
+}
+body main .timesUpMsg.active {
+  display: block;
+}
+body main .timer {
+  font-size: 3em;
+}
+body main .buttonsSet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: clamp(400px, 80vw, 600px);
+  margin-top: 30px;
+}
+body main .buttonsSet .key,
+body main .buttonsSet .functionKey {
+  background-color: #ffffff;
+  border: 1px solid rgb(209, 213, 219);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-family: "Lato", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  height: 40px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none #d1d5db solid;
+  text-decoration-thickness: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+body main .buttonsSet .key.hover,
+body main .buttonsSet .functionKey.hover {
+  background-color: rgb(249, 250, 251);
+}
+body main .buttonsSet .key.focus,
+body main .buttonsSet .functionKey.focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+body main .buttonsSet .key.focus-visible,
+body main .buttonsSet .functionKey.focus-visible {
+  box-shadow: none;
+}
+body main .buttonsSet .functionKey {
+  height: 50px;
+  width: 70px;
+}
+
+/*# sourceMappingURL=style.css.map */
