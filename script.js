@@ -6,6 +6,34 @@ let integerSign = true;
 
 let questionNum = 0;
 
+const timeH = document.getElementById("timeI");
+
+var isPaused;
+
+function convertToDisplay(seconds) {
+  let isNeg = false;
+
+  if (seconds < 0) {
+    isNeg = true;
+    seconds = Math.abs(seconds);
+  }
+
+  let fHours  = Math.floor(seconds / 3600);
+  let fMinutes = Math.floor((seconds / 60) % 60);
+  let fSeconds = Math.floor(seconds % 60);
+  let fString = String(fHours).padStart(2, "0") + ":" + 
+            String(fMinutes).padStart(2, "0") + ":" + 
+            String(fSeconds).padStart(2, "0");
+
+  if (isNeg) fString = `-${fString}`;
+  return fString;
+}
+
+  // Display output
+  function displayTime(input) {
+    timeH.innerHTML = convertToDisplay(input);
+  }
+
 document.addEventListener('keypress', (e) => {
 
   switch(e.key) {
@@ -73,20 +101,40 @@ document.addEventListener('keypress', (e) => {
               }
             })
             
+
+
+function clear() {
+  window.localStorage.clear();
+}
+
+function pause() {
+  isPaused ? isPaused = false : isPaused = true;
+
+  const pauseKey = document.querySelector('.pauseKey');
+  pauseKey.textContent == "Pause" ? pauseKey.textContent = "Play" : pauseKey.textContent = "Pause";
+}
+
 function executeOrder66() {
   
+  function totalTime(ein) {
+    if (!hasReachedZéro) {
+      timeDifference = ein;
+    } else if (hasReachedZéro) {
+      timeDifference = 0 - ein;
+    };
+    return timeDifference;
+  }
+
   document.body.classList.remove('active');
   questionNum++;
   let x = 0;
-  let isPaused = false;
+  isPaused = false;
   var hasReachedZéro = false;
   
   
   let inputMinutes = inputTime;
   let timeSecond = (inputMinutes * 60).toFixed(1);
   let startingVal = timeSecond;
-  
-  const timeH = document.getElementById("timeI");
   
   displayTime(timeSecond);
   
@@ -127,17 +175,25 @@ function executeOrder66() {
 
     if (e.key === "Enter") {
 
-      let inverseOfTimeSecond = 0 -  timeSecond;
+      let fetchedTime = localStorage.getItem('Time Saved')
+      if (fetchedTime == null) {
+        fetchedTime = 0;
+      }
+    
+      
+      timeSavedNow = totalTime(timeSecond);
+      totalTimeSaved = parseFloat(timeSavedNow) + parseFloat(fetchedTime)
+      localStorage.setItem('Time Saved', totalTimeSaved)
 
-      const hr  = Math.floor(timeSecond / 3600);
-      const min = Math.floor((timeSecond / 60) % 60);
-      const sec = Math.floor(timeSecond % 60);
-      let str = String(hr).padStart(2, "0") + ":" + String(min).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
+      let inverseOfTimeSecond = 0 - timeSecond;
+      let finalTimeOutput = convertToDisplay(timeSecond)
       
 
       !hasReachedZéro ? 
-      localStorage.setItem(`Question Number: ${questionNum}`, `${timeSecond} seconds, ${str}`):
-      localStorage.setItem(`Question Number: ${questionNum}`, `${inverseOfTimeSecond} seconds, ${str}`);
+      localStorage.setItem(`Question Number: ${questionNum}`,
+        `${timeSecond} seconds, ${finalTimeOutput}`):
+      localStorage.setItem(`Question Number: ${questionNum}`, 
+        `${inverseOfTimeSecond} seconds, -${finalTimeOutput}`);
 
       x++;
 
@@ -160,43 +216,12 @@ function executeOrder66() {
         seconds += secs + (mins * 60) + (hrs * 3600); 
       }
 
-      var timeSaved = String(Math.floor(seconds / 3600)).padStart(2, "0") + ":" + 
-                      String(Math.floor((seconds / 60) % 60)).padStart(2, "0") + ":" + 
-                      String(Math.floor(seconds % 60)).padStart(2, "0");
-      console.log(timeSaved + seconds);
-
-      if (hasReachedZéro == true) {
-        timeSaved = `-${timeSaved}`;
-        console.log('no')
-      } else {
-        console.log('not working')
-      }
-
-      console.log(timeSaved);
     };
 
     if (e.key === "c") {
       window.localStorage.clear();
     }
   });
-
-  function countUp() {
-    return setInterval(() => {
-      if (x !== 0) {
-        return;
-      }
-      timeSecond++;
-      displayTime(timeSecond);
-    }, 1000);
-  }
-  
-  function displayTime(second) {
-    const hr  = Math.floor(second / 3600);
-    const min = Math.floor((second / 60) % 60);
-    const sec = Math.floor(second % 60);
-    let str = String(hr).padStart(2, "0") + ":" + String(min).padStart(2, "0") + ":" + String(sec).padStart(2, "0")
-    timeH.innerHTML = str;
-  }
   
   function endCount() {
     document.body.classList.toggle('active');
@@ -207,6 +232,7 @@ function executeOrder66() {
     document.querySelector('#timeI').textContent = resetVal;
     document.body.classList.remove('active');
     clearInterval(countDown);
+    timeSecond = 0;
   }
 };
 
