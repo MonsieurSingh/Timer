@@ -1,4 +1,5 @@
 let data = [];
+var audio = new Audio('ping.mp3');
 
 var threshold = 0.01;
 var inputTime;
@@ -106,6 +107,7 @@ function executeOrder66() {
       if (timeSecond == zeroReplacer) {
         endCount();
         // countUp();
+        audio.play();
         hasReachedZéro = true;
         integerSign = false;
         // clearInterval(countDown);
