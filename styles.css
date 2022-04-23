@@ -1,13 +1,11 @@
 * {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
-  min-height: 100vh;
-  color: black;
+  color: crimson;
   background-color: beige;
+  font-family: 'Iceland', cursive;
 }
 
 body.active {
@@ -18,11 +16,33 @@ body.active .timerDisp {
   color: beige;
 }
 
-.timerDisp {
-  height: 100vh;
-  width: 100vw;
-  
-  font-family: 'Iceland', cursive;
+body.active .key {
+  border: none;
+}
+
+div#timer.timerDisp {
+  width: 1090px;
+  height: 1000px;
+  margin: auto;
+  margin-top: auto;
+}
+
+div.functionalButtons {
+  width: 436px;
+  height: 210px;
+}
+
+div.row {
+  width: 436px;
+  height: 45px;
+}
+
+div.row.bottomRow {
+  width: 436px;
+  height: 60px;
+}
+
+.timerDisp {  
   font-size: 10rem;
   
   display: flex;
@@ -75,6 +95,16 @@ body.active .timerDisp {
 .functionalButtons .row:nth-child(3) .key {
   width: 4em;
 }
+
+/* .buttonNum {
+  width: 72px;
+  height: 45px;
+}
+
+.buttonText {
+  width: 96px;
+  height: 60px;
+} */
 
 button:active:hover {
   color: #666;
