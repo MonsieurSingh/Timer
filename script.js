@@ -1,4 +1,3 @@
-let data = [];
 var audio = new Audio('ping.mp3');
 
 var threshold = 0.01;
@@ -113,17 +112,6 @@ function executeOrder66() {
         // clearInterval(countDown);
       }
       
-      if (x !== 0) {
-        const hr  = Math.floor(timeSecond / 3600);
-        const min = Math.floor((timeSecond / 60) % 60);
-        const sec = Math.floor(timeSecond % 60);
-        let str = String(hr).padStart(2, "0") + ":" + String(min).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
-        
-        data.push(str);
-        
-        return
-      };
-      
       if (!isPaused && !hasReachedZéro) timeSecond--;
       if (!isPaused && hasReachedZéro ) {
         timeSecond++
@@ -147,7 +135,7 @@ function executeOrder66() {
       let str = String(hr).padStart(2, "0") + ":" + String(min).padStart(2, "0") + ":" + String(sec).padStart(2, "0");
       
 
-      !document.body.classList.contains('active') ? 
+      !hasReachedZéro ? 
       localStorage.setItem(`Question Number: ${questionNum}`, `${timeSecond} seconds, ${str}`):
       localStorage.setItem(`Question Number: ${questionNum}`, `${inverseOfTimeSecond} seconds, ${str}`);
 
@@ -172,7 +160,17 @@ function executeOrder66() {
         seconds += secs + (mins * 60) + (hrs * 3600); 
       }
 
-      var timeSaved = String(Math.floor(seconds / 3600)).padStart(2, "0") + ":" + String(Math.floor((seconds / 60) % 60)).padStart(2, "0") + ":" + String(Math.floor(seconds % 60)).padStart(2, "0");
+      var timeSaved = String(Math.floor(seconds / 3600)).padStart(2, "0") + ":" + 
+                      String(Math.floor((seconds / 60) % 60)).padStart(2, "0") + ":" + 
+                      String(Math.floor(seconds % 60)).padStart(2, "0");
+      console.log(timeSaved + seconds);
+
+      if (hasReachedZéro == true) {
+        timeSaved = `-${timeSaved}`;
+        console.log('no')
+      } else {
+        console.log('not working')
+      }
 
       console.log(timeSaved);
     };
